@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Navbar from './components/Navbar';
 import StatCard from './components/StatCard';
@@ -45,25 +45,32 @@ const orders = [
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showAnimation, setShowAnimation] = useState(false);
 
   useEffect(() => {
-    // Simulate data loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    // Small delay to ensure DOM is ready before showing animation
+    const animTimer = setTimeout(() => setShowAnimation(true), 50);
+    
+    // Data loading timer
+    const dataTimer = setTimeout(() => setIsLoading(false), 2000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(animTimer);
+      clearTimeout(dataTimer);
+    };
   }, []);
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-screen bg-black">
-        <DotLottieReact
-          src="https://lottie.host/f51b20f8-9004-450a-b266-7e4fb6b46de7/L7T6b5AOmP.lottie"
-          loop
-          autoplay
-          style={{ width: '300px', height: '300px' }}
-        />
+        {showAnimation && (
+          <DotLottieReact
+            src="https://lottie.host/f51b20f8-9004-450a-b266-7e4fb6b46de7/L7T6b5AOmP.lottie"
+            loop
+            autoplay
+            style={{ width: '300px', height: '300px' }}
+          />
+        )}
       </div>
     );
   }
