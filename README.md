@@ -2,6 +2,10 @@
 
 A modern sales dashboard built with React, Vite, Tailwind CSS, and Recharts.
 
+## Live Demo
+You can view the live demo of the project here:  
+[Live Demo](https://analyticsdashapp.netlify.app/)
+
 ## Features
 
 - Modern, responsive design
